@@ -1,0 +1,25 @@
+# Data
+data/raw/
+data/processed/
+*.parquet
+*.xlsx
+*.csv
+
+# Python environment & caches
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Large app artifacts if any non-shipped
+artifacts/
+scratch/

@@ -1,0 +1,37 @@
+# Customer Churn & Lifetime Value Project Configuration
+
+data:
+  raw_path: "data/raw/online_retail_II.csv"
+  processed_path: "data/processed/online_retail_cleaned.parquet"
+  returns_path: "data/processed/online_retail_returns.parquet"
+
+churn_definition:
+  horizon_days: 90  # Default churn window H
+  sensitivity_horizons: [60, 120]
+  # Snapshot schedule (monthly cutoffs)
+  snapshot_freq: "MS"
+
+features:
+  recency_windows: [90, 180, 365]
+  momentum_window_days: 90
+
+split:
+  # Snapshot-based temporal split with H-day boundary gap
+  train_snapshots: ["2010-04-01", "2010-05-01", "2010-06-01", "2010-07-01", "2010-08-01", "2010-09-01"]
+  val_snapshots: ["2010-10-01", "2010-11-01", "2010-12-01"]
+  test_snapshots: ["2011-04-01", "2011-05-01", "2011-06-01", "2011-07-01", "2011-08-01", "2011-09-01"]
+  gap_days: 90
+
+model:
+  random_state: 42
+  n_cv_splits: 4
+  calibrator: "isotonic"  # or "sigmoid"
+
+# Business Policy Parameters (ILLUSTRATIVE ASSUMPTIONS - NOT MEASURED FINDINGS)
+business_assumptions:
+  save_rate: 0.25               # 25% of churners accept offer and stay
+  offer_cost: 15.0              # £15 cost per offer extended
+  gross_margin: 0.40            # 40% profit margin on customer spend
+  contact_cost: 1.50            # £1.50 administrative/channel cost per target
+  non_churn_accept_rate: 0.80   # 80% of non-churners accept incentive if targeted
+  horizon_months: 3             # 90-day evaluation horizon
