@@ -1,7 +1,12 @@
 """Design system tokens, color palettes, and plotting utilities for Matplotlib and Plotly."""
 
+# pyrefly: ignore [missing-import]
 import matplotlib.pyplot as plt
+
+# pyrefly: ignore [missing-import]
 import plotly.graph_objects as go
+
+# pyrefly: ignore [missing-import]
 import plotly.io as pio
 
 # Color Tokens
